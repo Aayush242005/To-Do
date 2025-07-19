@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+
+  <div id="sidebar" class="sidebar">
+    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+    <h2>Actions</h2>
+    <button onclick="location.href='index.html'">Add Task</button>
+    <button onclick="clearAllTasks()">Clear All</button>
+  </div>
+
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="main">
+    <h1>Saved Tasks</h1>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    // Sidebar toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+      document.getElementById('overlay').classList.toggle('active');
+    }
+
+    // Load tasks from localStorage
+    function loadTasks() {
+      const taskList = document.getElementById('taskList');
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+      taskList.innerHTML = '';
+
+      tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.className = 'task-item';
+        li.innerHTML = `
+          <span>${task.text} ${task.time ? '⏰ ' + task.time : ''}</span>
+          <div class="task-actions">
+            <button class="edit-btn" onclick="editTask(${index})">Edit</button>
+            <button class="delete-btn" onclick="deleteTask(${index})">Delete</button>
+          </div>
+        `;
+        taskList.appendChild(li);
+      });
+    }
+
+    function deleteTask(index) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.splice(index, 1);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      loadTasks();
+    }
+
+    function editTask(index) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      const newText = prompt("Edit task:", tasks[index].text);
+      if (newText !== null && newText.trim() !== '') {
+        tasks[index].text = newText.trim();
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        loadTasks();
+      }
+    }
+
+    function clearAllTasks() {
+      if (confirm("Are you sure you want to delete all tasks?")) {
+        localStorage.removeItem('tasks');
+        loadTasks();
+      }
+    }
+
+    loadTasks(); // Load when page opens
+  </script>
+</body>
+</html>
+
