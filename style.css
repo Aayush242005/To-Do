@@ -1,0 +1,192 @@
+/* === Basic Reset === */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f0f0;
+  color: #000;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+/* === Hamburger Menu === */
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  background: transparent;
+  color: inherit;
+  border: none;
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  background-color: #07374a;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: -260px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #25b79f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* === Dark Mode Toggle === */
+.dark-toggle {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.dark-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* === Overlay === */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 999;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* === Main Content === */
+.main {
+  padding: 30px;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.input-section {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-section input,
+.input-section button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Dark mode inputs and buttons */
+body.dark input,
+body.dark button {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* === Task Type Selector === */
+.task-type {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+/* === Task List === */
+#taskList {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  background: #e6f7f4;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.dark .task-item {
+  background: #1f1f1f;
+  border: 1px solid #333;
+}
+
+.task-text {
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* === Task Actions === */
+.task-actions {
+  display: flex;
+  align-items: center;
+}
+
+.task-actions button {
+  margin-left: 8px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: orange;
+  color: white;
+}
+
+.delete-btn {
+  background: red;
+  color: white;
+}
+
+/* === Checkbox === */
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.3);
+  cursor: pointer;
+}
