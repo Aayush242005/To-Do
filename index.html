@@ -1,0 +1,46 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hamburger Button -->
+  <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+
+  <!-- Slide-in Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+    <h2>Actions</h2>
+    <button onclick="openAddTask()">Add Task</button>
+    <button onclick="location.href='tasks.html'">Show Tasks</button>
+    <button onclick="clearAllTasks()">Clear All</button>
+    <label class="toggle-dark-mode">
+      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()"> Dark Mode
+    </label>
+  </div>
+
+  <!-- Overlay for closing sidebar -->
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="main">
+    <h1>To-Do List</h1>
+
+    <div class="task-type">
+      <label><input type="radio" name="taskType" value="simple" checked onchange="toggleTimeInput()"> Simple Task</label>
+      <label><input type="radio" name="taskType" value="timed" onchange="toggleTimeInput()"> Task with Reminder</label>
+    </div>
+
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="Enter your task" />
+      <input type="datetime-local" id="taskTime" style="display: none;" />
+      <button onclick="addTask()">Save Task</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
